@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:new_app/model/article_model.dart';
+import 'package:new_app/widgets/onpressedurl.dart';
 
 class NewsTile extends StatelessWidget {
   const NewsTile({super.key, required this.articleModel});
@@ -11,21 +12,19 @@ class NewsTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
       child: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(6),
-            child: articleModel.image == null
-                ? Image.asset(
-                    'assets/health.avif',
-                    height: 200,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  )
-                : Image.network(
-                    articleModel.image!,
-                    height: 200,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
+          InkWell(
+            onTap: () {
+              OnPressedUrl (articleModel.url!);
+            },
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: FadeInImage(
+                        placeholder: const AssetImage('assets/busnuss22.webp'),
+                        image: NetworkImage(articleModel.image ??
+                            'https://i.stack.imgur.com/l60Hf.png'),
+                        fit: BoxFit.fill,
+                      ),
+            ),
           ),
           const SizedBox(height: 12),
           Text(
@@ -38,7 +37,7 @@ class NewsTile extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            articleModel.subtitle ?? '',
+            articleModel.subtitle ?? 'NO DESCRIPTION',
             textAlign: TextAlign.center,
             maxLines: 2,
             style: TextStyle(

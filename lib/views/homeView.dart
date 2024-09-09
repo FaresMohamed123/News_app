@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:new_app/widgets/appBarText.dart';
 import 'package:new_app/widgets/category_List_View.dart';
 import 'package:new_app/widgets/newList_viewb_uilder.dart';
 
@@ -8,23 +9,10 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'News',
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                ' Cloud',
-                style:
-                    TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
-              ),
-            ],
-          ),
-          centerTitle: true,
-        ),
+       appBar: appBarText(
+        title: 'News',
+        subtitle: 'Cloud',
+      ),
         body: const CustomScrollView(
           physics: BouncingScrollPhysics(),
           slivers: [
